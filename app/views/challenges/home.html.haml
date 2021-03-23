@@ -1,0 +1,9 @@
+.navbar.navbar-light.bg-light
+    .container-fluid
+        %a{class: 'navbar-brand', href: '#'} Gergely Károlyi - JavaScript30 demo
+        = link_to icon('fab', 'github'), 'https://github.com/gkarolyi/js30-demo'
+
+.container#cards
+    .row
+        - (1..30).each do |id|
+            = render partial: "components/challenge_card", locals: { id: id }
