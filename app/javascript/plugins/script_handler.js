@@ -1,5 +1,3 @@
-const scriptNotFound = () => {};
-
 const loadChallengeScript = () => {
   const challengeWrapper = document.getElementById("challenge-wrapper");
   if (challengeWrapper) {
