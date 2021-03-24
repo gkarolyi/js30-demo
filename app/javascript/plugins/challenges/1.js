@@ -21,7 +21,7 @@ const challengeScript = () => {
       playSound(audio);
       const key = document.querySelector(`.key[data-key="${event.keyCode}"]`);
       if (key) {
-        key.classList.toggle("playing");
+        key.classList.add("playing");
       }
     }
   };
