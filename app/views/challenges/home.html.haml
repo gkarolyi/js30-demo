@@ -1,4 +1,5 @@
 #cards
-    .row
-        - (1..30).each do |id|
-            = render partial: "components/challenge_card", locals: { id: id }
+    .container
+        .row
+            - (1..30).each do |id|
+                = render partial: "components/challenge_card", locals: { id: id }
