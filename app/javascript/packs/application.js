@@ -7,5 +7,11 @@ import Rails from "@rails/ujs";
 import Turbolinks from "turbolinks";
 import "channels";
 
+import { loadChallengeScript } from "../plugins/script_handler";
+
 Rails.start();
 Turbolinks.start();
+
+document.addEventListener("turbolinks:load", (event) => {
+  loadChallengeScript(event);
+});
