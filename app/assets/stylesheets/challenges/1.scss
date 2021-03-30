@@ -1,57 +1,55 @@
 #challenge-1 {
-  #challenge-container {
-    font-size: 10px;
-    background: url(image-path("1_background.jpg")) bottom center;
-    background-size: cover;
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+  font-size: 10px;
+  background: url(image-path("1_background.jpg")) bottom center;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 
-    .challenge-body {
-      .keys {
-        display: flex;
-        flex: 1;
-        min-height: 93vh;
-        align-items: center;
-        justify-content: center;
-      }
+  .challenge-body {
+    .keys {
+      display: flex;
+      flex: 1;
+      min-height: 93vh;
+      align-items: center;
+      justify-content: center;
+    }
 
-      .key {
-        border: 0.4rem solid black;
-        border-radius: 0.5rem;
-        margin: 2px;
-        padding: 8px;
-        font-size: 1.5rem;
-        transition: all 0.07s ease;
-        text-align: center;
-        color: white;
-        background: rgba(0, 0, 0, 0.4);
-        text-shadow: 0 0 0.5rem black;
-      }
+    .key {
+      border: 0.4rem solid black;
+      border-radius: 0.5rem;
+      margin: 2px;
+      padding: 8px;
+      font-size: 1.5rem;
+      transition: all 0.07s ease;
+      text-align: center;
+      color: white;
+      background: rgba(0, 0, 0, 0.4);
+      text-shadow: 0 0 0.5rem black;
+    }
 
-      .red-flash {
-        transform: scale(1.2);
-        border-color: #bb152b;
-        box-shadow: 0 0 1rem #bb152b;
-      }
+    .red-flash {
+      transform: scale(1.2);
+      border-color: #bb152b;
+      box-shadow: 0 0 1rem #bb152b;
+    }
 
-      .playing {
-        transform: scale(1.1);
-        border-color: #ffc600;
-        box-shadow: 0 0 1rem #ffc600;
-      }
+    .playing {
+      transform: scale(1.1);
+      border-color: #ffc600;
+      box-shadow: 0 0 1rem #ffc600;
+    }
 
-      kbd {
-        display: block;
-        font-size: 4rem;
-      }
+    kbd {
+      display: block;
+      font-size: 4rem;
+    }
 
-      .sound {
-        font-size: 1.2rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1rem;
-        color: #ffc600;
-      }
+    .sound {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      color: #ffc600;
     }
   }
 }
