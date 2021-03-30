@@ -31,7 +31,7 @@ Rails.application.configure do
   config.assets.compile = false
 
   # do not check if asset is precompiled
-  config.assets.check_precompiled_asset = false
+  #config.assets.check_precompiled_asset = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = 'http://assets.example.com'
