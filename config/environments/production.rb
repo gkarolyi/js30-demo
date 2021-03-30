@@ -30,6 +30,9 @@ Rails.application.configure do
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
+  # enable serving static files from assets
+  config.serve_static_files = true
+
   # do not check if asset is precompiled
   #config.assets.check_precompiled_asset = false
 
