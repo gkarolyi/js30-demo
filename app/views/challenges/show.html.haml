@@ -1,3 +1,4 @@
 #challenge-wrapper{data: {challenge_id: @id}}
     %div{id: "challenge-#{@id}"}
-        = render partial: "components/challenges/#{@id}" rescue nil || (render partial: "components/challenge_missing")
+        = render partial: "components/challenges/#{@id}" 
+        = #rescue nil || (render partial: "components/challenge_missing")
