@@ -1,4 +1,12 @@
-.navbar.navbar-light.bg-light
-    .container-fluid
-        = link_to "Gergely Károlyi - JavaScript30 demo", root_path, class: "navbar-brand"
+//.navbar.navbar-light.bg-light
+//    .container-fluid
+//        = link_to "Gergely Károlyi - JavaScript30 demo", root_path, class: "navbar-brand"
+//        = link_to icon('fab', 'github'), 'https://github.com/gkarolyi/js30-demo', target: "_blank"
+
+%nav.flex.flex-col.text-center.sm:flex-row.sm:text-left.sm:justify-between.py-4.px-6.bg-white.shadow.sm:items-baseline.w-full
+    .mb-2.sm:mb-0
+        = link_to icon('fas', 'home'), root_path
+    .mb-2.sm:mb-0
+        %p Gergely Karolyi
+    %div
         = link_to icon('fab', 'github'), 'https://github.com/gkarolyi/js30-demo', target: "_blank"
