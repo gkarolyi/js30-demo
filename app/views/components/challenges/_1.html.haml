@@ -1,50 +1,40 @@
 .challenge-body
-    .keys
-        .key{data: {key: '65'}}
-            %kbd A
-            .sound clap
-    </div>
-    <div data-key="83" class="key">
-      <kbd>S</kbd>
-      <span class="sound">hihat</span>
-    </div>
-    <div data-key="68" class="key">
-      <kbd>D</kbd>
-      <span class="sound">kick</span>
-    </div>
-    <div data-key="70" class="key">
-      <kbd>F</kbd>
-      <span class="sound">openhat</span>
-    </div>
-    <div data-key="71" class="key">
-      <kbd>G</kbd>
-      <span class="sound">boom</span>
-    </div>
-    <div data-key="72" class="key">
-      <kbd>H</kbd>
-      <span class="sound">ride</span>
-    </div>
-    <div data-key="74" class="key">
-      <kbd>J</kbd>
-      <span class="sound">snare</span>
-    </div>
-    <div data-key="75" class="key">
-      <kbd>K</kbd>
-      <span class="sound">tom</span>
-    </div>
-    <div data-key="76" class="key">
-      <kbd>L</kbd>
-      <span class="sound">tink</span>
-    </div>
-  </div>
+  .keys
+    .key{ data: { key: '65' }}
+      %kbd A
+      .sound clap
+    .key{ data: { key: '83' }}
+      %kbd S
+      .sound hihat
+    .key{ data: { key: '68' }}
+      %kbd D
+      .sound kick
+    .key{ data: { key: '70' }}
+      %kbd F
+      .sound openhat
+    .key{ data: { key: '71' }}
+      %kbd G
+      .sound boom
+    .key{ data: { key: '72' }}
+      %kbd H
+      .sound ride
+    .key{ data: { key: '74' }}
+      %kbd J
+      .sound snare
+    .key{ data: { key: '75' }}
+      %kbd K
+      .sound tom
+    .key{ data: { key: '76' }}
+      %kbd L
+      .sound tink
   
-  <audio data-key="65" src="<%= asset_path "clap.wav" %>"</audio>
-  <audio data-key="83" src="<%= asset_path "hihat.wav" %>"</audio>
-  <audio data-key="68" src="<%= asset_path "kick.wav" %>"</audio>
-  <audio data-key="70" src="<%= asset_path "openhat.wav" %>"</audio>
-  <audio data-key="71" src="<%= asset_path "boom.wav" %>"</audio>
-  <audio data-key="72" src="<%= asset_path "ride.wav" %>"</audio>
-  <audio data-key="74" src="<%= asset_path "snare.wav" %>"</audio>
-  <audio data-key="75" src="<%= asset_path "tom.wav" %>"</audio>
-  <audio data-key="76" src="<%= asset_path "tink.wav" %>"</audio>
-</div>
+  = audio_tag "clap.wav", { data: { key: "65" }}
+  = audio_tag "hihat.wav", { data: { key: "83" }}
+  = audio_tag "kick.wav", { data: { key: "68" }}
+  = audio_tag "openhat.wav", { data: { key: "70" }}
+  = audio_tag "boom.wav", { data: { key: "71" }}
+  = audio_tag "ride.wav", { data: { key: "72" }}
+  = audio_tag "snare.wav", { data: { key: "74" }}
+  = audio_tag "tom.wav", { data: { key: "75" }}
+  = audio_tag "tink.wav", { data: { key: "76" }}
+
