@@ -7,7 +7,7 @@ import Rails from "@rails/ujs";
 import Turbolinks from "turbolinks";
 // import "channels";
 // Tailwind CSS
-import "stylesheets/application";
+import "stylesheets/application.css";
 
 import { loadChallengeScript } from "../plugins/script_handler";
 
