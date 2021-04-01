@@ -31,10 +31,10 @@ Rails.application.configure do
   config.assets.compile = false
 
   # enable serving static files from assets
-  config.serve_static_files = true
+  # config.serve_static_files = true
 
   # do not check if asset is precompiled
-  #config.assets.check_precompiled_asset = false
+  # config.assets.check_precompiled_asset = false
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = 'http://assets.example.com'
