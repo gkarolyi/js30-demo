@@ -1,6 +1,6 @@
 #challenge-wrapper{data: {challenge_id: @id}}
     %div{id: "challenge-#{@id}"}
         - begin
-            = render partial: "components/challenges/#{@id}" 
-        -# rescue
-            =# render partial: "components/challenge_missing"
+            = render "components/challenges/#{@id}" 
+        - rescue
+            = render "components/challenge_missing"
