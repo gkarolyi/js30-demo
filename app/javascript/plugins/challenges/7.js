@@ -1,0 +1,3 @@
+const challengeScript = () => {};
+
+export { challengeScript };

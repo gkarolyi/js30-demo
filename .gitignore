@@ -22,6 +22,8 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
+# ignore temp image files
+.DS_Store
 
 /public/assets
 .byebug_history
