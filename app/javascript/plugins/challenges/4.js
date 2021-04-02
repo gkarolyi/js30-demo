@@ -1,42 +1,45 @@
-const filter1500s = (array) => {
+const filter1500s = (parentElement) => {
   // Array.prototype.filter()
   // 1. Filter the list of inventors for those who were born in the 1500's
-  const fifteen = array.filter((item) => item.year >= 1500 && item.year < 1600);
-  console.table(fifteen);
+  const array = JSON.parse(parentElement.dataset.inventors);
+  const filtered = array.filter(
+    (item) => item.year >= 1500 && item.year < 1600
+  );
+  populateTable(parentElement, filtered);
 };
 
 const fullNames = (array) => {
   // Array.prototype.map()
   // 2. Give us an array of the inventors first and last names
-  const fullNamesArray = array.map((item) => `${item.first} ${item.last}`);
-  console.log(fullNamesArray);
+  return array.map((item) => `${item.first} ${item.last}`);
 };
 
-const inventorsSortByBirthdate = (array) => {
+const inventorsSortByBirthdate = (parentElement) => {
   // Array.prototype.sort()
   // 3. Sort the inventors by birthdate, oldest to youngest
+  const array = JSON.parse(parentElement.dataset.inventors);
   const inventorsSorted = array.sort((previous, current) =>
     previous.year > current.year ? 1 : -1
   );
-
-  console.table(inventorsSorted);
+  populateTable(parentElement, inventorsSorted);
 };
 
-const alertTotalYears = (array) => {
+const totalYearsLived = (array) => {
   // Array.prototype.reduce()
   // 4. How many years did all the inventors live all together?
   const totalYears = array.reduce((total, item) => {
     return total + (item.passed - item.year);
   }, 0);
-  alert(totalYears);
+  return `Total years lived: ${totalYears}`;
 };
 
-const inventorsSortByAge = (array) => {
+const inventorsSortByAge = (parentElement) => {
   // 5. Sort the inventors by years lived
+  const array = JSON.parse(parentElement.dataset.inventors);
   const oldestSorted = array.sort((previous, current) =>
     previous.passed - previous.year < current.passed - current.year ? 1 : -1
   );
-  console.table(oldestSorted);
+  populateTable(parentElement, oldestSorted);
 };
 
 const boulevardsInParis = () => {
@@ -49,62 +52,106 @@ const boulevardsInParis = () => {
   console.log(de);
 };
 
-const sortPeopleAlphabetically = (array) => {
-  // 7. sort Exercise
-  // Sort the people alphabetically by last name
-  const peopleSorted = array.sort((a, b) => {
-    const lastName = (person) => person.split()[0];
-    return lastName(a) > lastName(b) ? 1 : -1;
-  });
+const resetInventorsTable = (parentElement) => {
+  const inventors = JSON.parse(parentElement.dataset.inventors);
+  populateTable(parentElement, inventors);
 };
 
-const sumListInstances = (array) => {
+const sortPeopleAlphabetically = (parentElement, event) => {
+  // 7. sort Exercise
+  // Sort the people alphabetically by last name
+  const array = JSON.parse(parentElement.dataset.listItems);
+  if (event.target.innerText === "reset") {
+    populateList(parentElement, array);
+    event.target.innerText = "Alphabetical sort";
+  } else {
+    const peopleSorted = array.sort((a, b) => {
+      const lastName = (person) => person.split()[0];
+      return lastName(a) > lastName(b) ? 1 : -1;
+    });
+    populateList(parentElement, peopleSorted);
+    event.target.innerText = "reset";
+  }
+};
+
+const sumListInstances = (parentElement) => {
   // 8. Reduce Exercise
   // Sum up the instances of each of these
+  const listContainer = parentElement.querySelector(".list-container");
+  const itemsCounter = parentElement.querySelector(".items-counter");
+  const array = listContainer.innerText.split("\n");
   const dataInstances = array.reduce((obj, item) => {
     obj[item] = obj[item] + 1 || 0;
     return obj;
   }, {});
-  console.log(dataInstances);
+  const formattedCounter = Object.entries(dataInstances).map((arr) =>
+    arr.join(": ")
+  );
+  populateList(parentElement, formattedCounter, ".items-counter");
 };
 
-const tableSortable = (table) => {
-  const sortRows = (table, colIndex) => {
-    const rows = table.querySelectorAll("tbody tr");
-    const selector = "td:nth-child(" + (colIndex + 1) + ")";
-    rows.forEach((row) => {
-      console.log(row);
-      console.log(selector);
-      const node = row.querySelector(selector);
-      console.log(node);
-      const value = node.innerText;
-      console.log(value);
-    });
-  };
+const addRandomItems = (parentElement, event) => {
+  const items = JSON.parse(parentElement.dataset.listItems);
+  if (event.target.innerText === "reset") {
+    populateList(parentElement, items);
+    event.target.innerText = "Add random items";
+    sumListInstances(parentElement);
+  } else {
+    const randomItems = items.sort(() => 0.5 - Math.random()).slice(0, 20);
+    populateList(parentElement, items.concat(randomItems));
+    event.target.innerText = "reset";
+    sumListInstances(parentElement);
+  }
+};
 
-  const siblingIndex = (node) => {
-    let count = 0;
-    while ((node = node.previousElementSibling)) {
-      count++;
+const populateTable = (parentElement, data) => {
+  const body = parentElement.querySelector("tbody");
+  body.innerHTML = "";
+  const rowHtml = parentElement.dataset.rowHtml;
+  data.forEach((item, index) => {
+    const newRow = body.insertRow();
+    if (index % 2 === 0) {
+      newRow.classList.add("bg-white");
+    } else {
+      newRow.classList.add("bg-gray-50");
     }
-    return count;
-  };
-
-  const sortTableHandler = (table) => {
-    return function (event) {
-      if (event.target.tagName.toLowerCase() == "a") {
-        sortRows(table, siblingIndex(event.target.parentNode));
-        event.preventDefault();
-      }
-    };
-  };
-
-  const thead = table.querySelector("thead");
-  const headers = thead.querySelectorAll("th");
-  headers.forEach((header) => {
-    header.innerHTML = "<a href='#'>" + header.innerHTML + "</a>";
+    const html = [
+      index + 1,
+      item["first"],
+      item["last"],
+      item["year"],
+      item["passed"],
+    ]
+      .map((cell) => {
+        return rowHtml.replace("PLACEHOLDER", cell);
+      })
+      .join("");
+    newRow.innerHTML = html;
   });
-  thead.addEventListener("click", sortTableHandler(table));
+};
+
+const populateList = (parentElement, data, query = ".list-container") => {
+  const listContainer = parentElement.querySelector(query);
+  listContainer.innerHTML = "";
+  const liHtml = parentElement.dataset.liHtml;
+  data.forEach((item) => {
+    listContainer.insertAdjacentHTML(
+      "beforeend",
+      liHtml.replace("PLACEHOLDER", item)
+    );
+  });
+};
+
+const createButton = (parentElement, btnName, callback) => {
+  const btnContainer = parentElement.querySelector(".buttons-container");
+  const btnHtml = parentElement.dataset.btnHtml;
+  btnContainer.insertAdjacentHTML(
+    "beforeend",
+    btnHtml.replace("PLACEHOLDER", btnName)
+  );
+  btnContainer.lastElementChild.addEventListener("click", (event) =>
+    callback(parentElement, event)
+  );
 };
 
 const challengeScript = () => {
@@ -112,19 +159,25 @@ const challengeScript = () => {
   const inventors = JSON.parse(inventorsTable.dataset.inventors);
 
   const peopleList = document.getElementById("people-list");
-  const people = JSON.parse(peopleList.dataset.people);
+  const people = JSON.parse(peopleList.dataset.listItems);
 
   const itemsList = document.getElementById("items-list");
-  const items = JSON.parse(itemsList.dataset.items);
+  const items = JSON.parse(itemsList.dataset.listItems);
 
-  function clickHandler(event) {
-    console.log(event);
-  }
+  populateTable(inventorsTable, inventors);
+  createButton(inventorsTable, "reset", resetInventorsTable);
+  createButton(inventorsTable, "1500s only", filter1500s);
+  console.log(fullNames(inventors));
+  createButton(inventorsTable, "birthdate ascending", inventorsSortByBirthdate);
+  console.log(totalYearsLived(inventors));
+  createButton(inventorsTable, "age descending", inventorsSortByAge);
 
-  const buttons = document.querySelectorAll("button");
-  buttons.forEach((btn) => btn.addEventListener("click", clickHandler));
+  populateList(peopleList, people);
+  createButton(peopleList, "Alphabetical sort", sortPeopleAlphabetically);
 
-  tableSortable(inventorsTable);
+  populateList(itemsList, items);
+  sumListInstances(itemsList);
+  createButton(itemsList, "+20 random items", addRandomItems);
 };
 
 export { challengeScript };
