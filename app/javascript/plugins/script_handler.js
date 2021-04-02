@@ -8,7 +8,7 @@ const loadChallengeScript = () => {
     .then((module) => {
       module.challengeScript();
     })
-    .catch(() => console.log("Script not found"));
+    .catch((error) => console.log(error));
 };
 
 export { loadChallengeScript };
