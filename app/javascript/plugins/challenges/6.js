@@ -56,6 +56,7 @@ const challengeScript = () => {
   const suggestions = document.querySelector(".suggestions");
   const suggestionsReset = suggestions.innerHTML;
 
+  searchInput.focus();
   searchInput.addEventListener("keyup", displayMatches);
 };
 
